@@ -1,0 +1,56 @@
+---
+  - name: Copy Server Setup Files
+    copy: src="files/guacamole-server-{{ ps_guac_server }}.tar.gz" dest=/tmp/
+    tags: file
+
+  - name: Extract the server source
+    unarchive: src="/tmp/guacamole-server-{{ ps_guac_server }}.tar.gz" copy=no dest="/tmp/"
+    tags: extract
+
+  - tags: install
+    block:
+    - name: Add Java repo
+      apt_repository: repo="ppa:webupd8team/java"
+
+    - name: Install dependencies for guacamole
+      package: name={{ item }} state=latest update_cache=yes
+      with_items: '{{ ps_dependencies }}'
+
+    - name: Build from source
+      shell: '{{ item }}'
+      args:
+        chdir: /tmp/guacamole-server-{{ ps_guac_server }}
+        creates: /usr/local/sbin/guacd
+      with_items: [ ./configure --with-init-dir=/etc/init.d, make, make install ]
+
+    - name: Run ldconfig
+      shell: ldconfig
+
+    - name: Add autostart
+      command: update-rc.d guacd defaults
+
+  - name: Copy over client
+    copy: src="files/guacamole-{{ ps_guac_client }}.war" dest=/var/lib/{{ ps_tomcat }}/webapps/guacamole.war
+    tags: file
+
+  - name: Make home directory
+    file: path='{{ ps_guac_home }}' state=directory
+    tags: configuration
+
+  - name: Make a link
+    file:
+      src: '{{ ps_guac_home }}'
+      dest: /etc/guacamole
+      state: link
+      force: yes
+      follow: true
+
+  - name: Add properties
+    template: src="guacamole.properties.j2" dest="{{ ps_guac_home }}/guacamole.properties"
+    tags: template
+
+  - name: Add user maps
+    template: src="usermapping.j2" dest="{{ ps_guac_home }}/user-mapping.xml"
+    tags: template
+    notify:
+      - Cleanup temp

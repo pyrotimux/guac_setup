@@ -1,0 +1,13 @@
+<user-mapping>
+{% for pusr in ps_users %}
+  <authorize username="{{ pusr.name }}" password="{{ pusr.pass }}">
+{% for psrv in ps_server_dict %}
+    <connection name="{{ psrv.server }}">
+      <protocol>rdp</protocol>
+      <param name="hostname">{{ psrv.ip }}</param>
+      <param name="port">{{ ps_window_port }}</param>
+    </connection>
+{% endfor %}
+  </authorize>
+{% endfor %}
+</user-mapping>

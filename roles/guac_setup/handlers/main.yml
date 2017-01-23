@@ -1,0 +1,16 @@
+---
+  - name: Cleanup temp
+    file: path={{ item }} state=absent
+    with_items:
+      - /tmp/guacamole-server-{{ ps_guac_server }}.tar.gz
+      - /tmp/guacamole-server-{{ ps_guac_server }}
+    ignore_errors: yes
+    notify:
+      - Restart services
+    tags: cleanup
+
+  - name: Restart services
+    service: name={{ item }} state=restarted
+    with_items: [ '{{ ps_tomcat }}', guacd ]
+    ignore_errors: yes
+    tags: restart
