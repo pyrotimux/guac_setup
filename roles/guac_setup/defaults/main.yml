@@ -1,19 +1,19 @@
 ---
-  ps_guacd_port: 4822
-  ps_window_port: 3389
-  ps_tomcat: tomcat7
-  ps_guac_home: /usr/share/{{ ps_tomcat }}/.guacamole
-  ps_guac_server: 0.9.9
-  ps_guac_client: 0.9.9
-  ps_dependencies:
+  guacd_port: 4822
+  window_port: 3389
+  tomcat: tomcat7
+  guac_home: /usr/share/{{ tomcat }}/.guacamole
+  guac_server: 0.9.9
+  guac_client: 0.9.9
+  dependencies:
     - apache2
     - libcairo2-dev
     - libjpeg62-dev
     - libpng12-dev
     - libossp-uuid-dev
     - libguac-dev
-    - "{{ ps_tomcat }}"
-    - "{{ ps_tomcat }}-common"
+    - "{{ tomcat }}"
+    - "{{ tomcat }}-common"
     - libtomcat7-java
     - software-properties-common
     - default-jdk
