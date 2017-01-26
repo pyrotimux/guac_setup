@@ -5,25 +5,3 @@
   guac_home: /usr/share/{{ tomcat }}/.guacamole
   guac_server: 0.9.9
   guac_client: 0.9.9
-  dependencies:
-    - apache2
-    - libcairo2-dev
-    - libjpeg62-dev
-    - libpng12-dev
-    - libossp-uuid-dev
-    - libguac-dev
-    - "{{ tomcat }}"
-    - "{{ tomcat }}-common"
-    - libtomcat7-java
-    - software-properties-common
-    - default-jdk
-    - python-psycopg2
-    - libpq-dev
-    - libfreerdp-dev
-    - libpango1.0-dev
-    - libssh2-1-dev
-    - libtelnet-dev
-    - libpulse-dev
-    - libssl-dev
-    - libvorbis-dev
-    - libwebp-dev
