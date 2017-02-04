@@ -14,8 +14,6 @@
   install:
     # Install ansible
     - pip install ansible
-    
-    - ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no
 
     # Check ansible version
     - ansible --version
@@ -25,7 +23,7 @@
 
   script:
     # Basic role syntax check
-    - ansible-playbook tests/test.yml -i tests/inventory
+    - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
 
   notifications:
     webhooks: https://galaxy.ansible.com/api/v1/notifications/
