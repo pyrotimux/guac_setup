@@ -1,5 +1,6 @@
 Role Name
 =========
+[![Build Status](https://travis-ci.org/pyrotimux/guacamole.png?branch=master)](https://travis-ci.org/pyrotimux/guacamole)
 
 Ansible role for setting up guacamole server on ubuntu.
 
@@ -10,7 +11,7 @@ None.
 
 Role Variables
 --------------
-Please pass in users and server dict. Example of it is shown below. 
+Please pass in users and server dict. Example of it is shown below.
 ```
   users:
     - { name: 'ichiban', pass: 'ichiV@gran7' }
@@ -24,7 +25,7 @@ Please pass in users and server dict. Example of it is shown below.
     - { server: "Terminal Server 1", ip: "10.255.10.22" }
     - { server: "Terminal Server 2", ip: "10.255.10.23" }
 ```
-Below are the default vars that could be changed. 
+Below are the default vars that could be changed.
 ```
 guacd_port: 4822
 window_port: 3389
@@ -46,7 +47,7 @@ Example Playbook
     gather_facts: true
     become: true
     roles:
-      - guac_setup
+      - guacamole
 ```
 License
 -------

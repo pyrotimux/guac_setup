@@ -4,4 +4,4 @@
     gather_facts: true
     become: true
     roles:
-      - guac_setup
+      - guacamole
