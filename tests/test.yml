@@ -4,4 +4,4 @@
     gather_facts: true
     become: true
     roles:
-      - pyrotimux.Gucamole
+      - pyrotimux.GucamoleInit
