@@ -1,6 +1,6 @@
 Role Name
 =========
-[![Build Status](https://travis-ci.org/pyrotimux/guacamole.png?branch=master)](https://travis-ci.org/pyrotimux/guacamole)
+[![Build Status](https://travis-ci.org/pyrotimux/pyrotimux.GucamoleInit.png?branch=master)](https://travis-ci.org/pyrotimux/pyrotimux.GucamoleInit)
 
 Ansible role for setting up guacamole server on ubuntu.
 
